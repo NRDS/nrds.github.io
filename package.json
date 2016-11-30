@@ -1,0 +1,31 @@
+{
+  "name": "nrds",
+  "version": "1.0.0",
+  "description": "nrds",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node ./tests",
+    "build": "npm run build:scripts -s && npm run build:styles -s ",
+    "build:scripts": "browserify -d scripts/index.js -p [minifyify --compressPath . --map main.js.map --output dist/main.js.map] | hashmark -n dist/main.js -s -l 8 -m assets.json 'dist/{name}{hash}{ext}'",
+    "build:styles": "stylus stylus/index.styl -m -o dist/ && hashmark -s -l 8 -m assets.json dist/main.css 'dist/{name}{hash}{ext}'",
+    "watch": "(watchify scripts -o app/index.browser.js -d & stylus -w stylus/index.styl -o app/styles/index.css)"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Sholto Maud",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "activity-router": "^1.1.1",
+    "fastn": "^2.0.0",
+    "fastclick": "^1.0.6",
+    "modal-component": "^1.1.0"
+  },
+  "devDependencies": {
+    "stylus": "^0.52.0",
+    "uglify-js": "^2.4.24"
+  }
+}
