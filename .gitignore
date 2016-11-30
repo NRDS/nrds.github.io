@@ -1,0 +1,10 @@
+node_modules
+*.log
+app
+.dogit
+documents
+assets
+fastn
+scripts
+stylus
+build
